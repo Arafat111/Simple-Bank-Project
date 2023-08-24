@@ -36,7 +36,7 @@
             <div class="col-md-4">
                 <div class="withdraw status">
                     <h5>Withdraw</h5>
-                    <h2>$00</h2>
+                    <h2>$ <span id="currentwithdraw">00</span></h2>
                 </div>
             </div>
             <div class="col-md-4">
@@ -57,7 +57,7 @@
                 <div class="col-md-6">
                     <div class="submit-part-two">
                         <h3>Withdraw</h3>
-                    <input type="text" class="form-control" placeholder="$ amount you want to Withdraw">
+                    <input id="withdrawamount" type="text" class="form-control" placeholder="$ amount you want to Withdraw">
                     <br>
                     <button id="addwithdraw" class="btn btn-success">Enter</button>
                     </div>
@@ -67,6 +67,9 @@
 
     </div>
     <script>
+
+        // Login Button
+
         let loginBtn = document.getElementById('login');
         loginBtn.addEventListener('click', function(){
             const loginPart = document.getElementById('login-part');
@@ -97,6 +100,31 @@
             let totalblance = currentBnumber+depositnumber;
             document.getElementById('currentbalance').innerHTML=totalblance;
         })
+
+        // Withdraw button
+
+        const addwithdraw = document.getElementById('addwithdraw');
+        addwithdraw.addEventListener('click', function(){
+            const withdrawamount = document.getElementById('withdrawamount').value;
+
+            let withdrawnumber = parseFloat(withdrawamount);
+            
+            const currentwithdraw = document.getElementById('currentwithdraw').innerHTML;
+            const currentWnumber = parseFloat(currentwithdraw);
+
+            const totalwithdraw = currentWnumber+withdrawnumber;
+
+            document.getElementById('currentwithdraw').innerHTML=totalwithdraw;
+
+            const currentbalance = document.getElementById('currentbalance').innerHTML;
+
+            const currentBnumber = parseFloat(currentbalance);
+
+            const totalblance = currentBnumber - totalwithdraw;
+
+            document.getElementById('currentbalance').innerHTML= totalblance; 
+        })
+
 
     </script>
     
