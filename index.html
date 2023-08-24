@@ -26,7 +26,44 @@
     <!-- Transaction area -->
 
     <div id="trans-part">
-        <h1>Welcome Again</h1>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="deposit status">
+                    <h5>Deposit</h5>
+                    <h2>$ <span id="currentdeposit">00</span></h2>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="withdraw status">
+                    <h5>Withdraw</h5>
+                    <h2>$00</h2>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="balance status">
+                    <h5>Balance</h5>
+                    <h2>$ <span id="currentbalance">1200</span></h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                   <div class="submit-part-two">
+                    <h3>Deposit</h3>
+                    <input id="depositamount" type="text"  class="form-control" placeholder="$ amount you want to Deposit">
+                    <br>
+                    <button id="adddeposit" class="btn btn-success">Enter</button>
+                   </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="submit-part-two">
+                        <h3>Withdraw</h3>
+                    <input type="text" class="form-control" placeholder="$ amount you want to Withdraw">
+                    <br>
+                    <button id="addwithdraw" class="btn btn-success">Enter</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
     <script>
@@ -38,6 +75,27 @@
             const transPart = document.getElementById('trans-part');
 
             transPart.style.display= 'block';
+        })
+
+        //deposit button
+
+        let depositbtn = document.getElementById('adddeposit');
+        depositbtn.addEventListener("click", function(){
+            let depositamount = document.getElementById('depositamount').value;
+            let depositnumber = parseFloat(depositamount);
+
+            const currentdeposit = document.getElementById('currentdeposit').innerHTML;
+            let currentDnumber = parseFloat(currentdeposit);
+
+            let totaldeposit = depositnumber + currentDnumber;
+            
+            document.getElementById('currentdeposit').innerHTML=totaldeposit;
+
+            const currentbalance = document.getElementById('currentbalance').innerHTML;
+            let currentBnumber = parseFloat(currentbalance);
+
+            let totalblance = currentBnumber+depositnumber;
+            document.getElementById('currentbalance').innerHTML=totalblance;
         })
 
     </script>
